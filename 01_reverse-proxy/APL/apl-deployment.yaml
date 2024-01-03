@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reverse-proxy-apl
+  namespace: reverse-proxy
+spec:
+  selector:
+    matchLabels:
+      app: reverse-proxy-apl
+  template:
+    metadata:
+      labels:
+        app: reverse-proxy-apl
+    spec:
+      containers:
+      - name: reverse-proxy-apl
+        image: reverse-proxy-apl
+        imagePullPolicy: IfNotPresent #ローカルのイメージを取得する場合には必須
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 8080

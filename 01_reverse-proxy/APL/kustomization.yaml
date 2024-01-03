@@ -4,9 +4,9 @@ kind: Kustomization
 namespace: reverse-proxy
 
 images:
-  - name: nginx
+  - name: reverse-proxy-apl
     newTag: latest
 
 resources:
-- nginx-deployment.yaml
-- nginx-service.yaml
+- apl-deployment.yaml
+- apl-service.yaml

@@ -3,10 +3,6 @@ kind: Kustomization
 
 namespace: reverse-proxy
 
-images:
-  - name: nginx
-    newTag: latest
-
 resources:
-- nginx-deployment.yaml
-- nginx-service.yaml
+- APL/
+- Nginx/
