@@ -3,10 +3,16 @@ kind: Kustomization
 
 namespace: reverse-proxy
 
+configMapGenerator:
+- name: default.conf
+  files:
+  - config/default.conf
+
 images:
-  - name: nginx
-    newTag: latest
+- name: nginx
+  newTag: latest
 
 resources:
+- secret/reverse-proxy-certificate.yaml
 - nginx-deployment.yaml
 - nginx-service.yaml

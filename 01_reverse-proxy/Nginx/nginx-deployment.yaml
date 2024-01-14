@@ -25,3 +25,29 @@ spec:
             cpu: "250m"
         ports:
         - containerPort: 443
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d/
+          readOnly: true
+          name: reverse-proxy-nginx-conf
+        - mountPath: /etc/nginx/ssl/
+          readOnly: true
+          name: reverse-proxy-certificate-conf
+      volumes:
+      - name: reverse-proxy-nginx-conf
+        configMap:
+          name: default.conf
+          items:
+          - key: default.conf
+            path: default.conf
+      - name: reverse-proxy-certificate-conf
+        secret:
+          secretName: reverse-proxy-certificate
+          items:
+          - key: root.crt
+            path: root.crt
+          - key: server.crt
+            path: server.crt
+          - key: server.key
+            path: server.key
+          - key: server.password
+            path: server.password
