@@ -16,6 +16,11 @@ spec:
       - name: reverse-proxy-apl
         image: reverse-proxy-apl
         imagePullPolicy: IfNotPresent #ローカルのイメージを取得する場合には必須
+        env:
+        - name: SPANNER_EMULATOR_HOST
+          value: "spanner-emulator:9010"
+        - name: SPRING_CLOUD_GCP_SPANNER_EMULATOR-HOST
+          value: "spanner-emulator.reverse-proxy.svc.cluster.local:9010"
         resources:
           limits:
             memory: "512Mi"
