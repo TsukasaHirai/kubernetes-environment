@@ -7,7 +7,7 @@ spec:
   selector:
     app: spanner-emulator
   ports:
-  - name: spanner-cli
+  - name: http
     port: 9010
     targetPort: 9010
   - name: grpc
