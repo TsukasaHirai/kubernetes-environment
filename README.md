@@ -1,2 +1,2 @@
 # kubernetes-environment
-kubernetesで使用するmanifest用のリポジトリ
+kubernetesで使用するmanifestを管理するリポジトリ

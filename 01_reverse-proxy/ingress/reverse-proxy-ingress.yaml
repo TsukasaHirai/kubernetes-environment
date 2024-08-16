@@ -4,8 +4,15 @@ metadata:
   name: reverse-proxy-ingress
   namespace: reverse-proxy
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/secure-backends: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
+  tls:
+  - hosts:
+    - reverse-proxy
+    secretName: reverse-proxy-certificate
   rules:
   - host: reverse-proxy
     http:
@@ -14,13 +21,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: reverse-proxy-apl
+            name: reverse-proxy-nginx
             port:
-              number: 8080
-      - path: /login
-        pathType: Prefix
-        backend:
-          service:
-            name: reverse-proxy-apl
-            port:
-              number: 8080
+              number: 443

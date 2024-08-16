@@ -8,4 +8,4 @@ resources:
 - APL/
 # FIXME うまくingress→nginx→aplができない
 - Nginx/
-# - ingress/reverse-proxy-ingress.yaml
+- Ingress/reverse-proxy-ingress.yaml
