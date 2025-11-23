@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: reverse-proxy-apl
-        image: reverse-proxy-apl
+        image: ghcr.io/tsukasahirai/reverse-proxy-apl
         imagePullPolicy: IfNotPresent #ローカルのイメージを取得する場合には必須
         env:
         - name: SPANNER_EMULATOR_HOST
@@ -55,3 +55,5 @@ spec:
           items:
           - key: otel-collector.yaml
             path: otel-collector.yaml
+      imagePullSecrets:
+      - name: ghcr-secret

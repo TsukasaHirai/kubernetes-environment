@@ -9,9 +9,10 @@ configMapGenerator:
   - config/otel-collector.yaml
 
 images:
-  - name: reverse-proxy-apl
-    newTag: latest
+  - name: ghcr.io/tsukasahirai/reverse-proxy-apl
+    newTag: v0.0.1
 
 resources:
 - apl-deployment.yaml
 - apl-service.yaml
+- secret/ghcr-secret.yaml
