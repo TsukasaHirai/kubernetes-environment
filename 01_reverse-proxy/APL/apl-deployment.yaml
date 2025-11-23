@@ -30,3 +30,28 @@ spec:
             cpu: "250m"
         ports:
         - containerPort: 8080
+      - name: opentelemetry-collector
+        image: otel/opentelemetry-collector
+        args:
+          - "--config=/etc/otel-collector/otel-collector.yaml"
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 4317
+        - containerPort: 4318
+        volumeMounts:
+          - mountPath: /etc/otel-collector/
+            readOnly: true
+            name: otel-collector-config
+      volumes:
+      - name: otel-collector-config
+        configMap:
+          name: otel-collector.yaml
+          items:
+          - key: otel-collector.yaml
+            path: otel-collector.yaml

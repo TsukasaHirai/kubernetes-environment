@@ -3,6 +3,11 @@ kind: Kustomization
 
 namespace: reverse-proxy
 
+configMapGenerator:
+- name: otel-collector.yaml
+  files:
+  - config/otel-collector.yaml
+
 images:
   - name: reverse-proxy-apl
     newTag: latest

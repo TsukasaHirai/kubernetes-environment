@@ -8,7 +8,7 @@ spec:
   selector:
     app: reverse-proxy-nginx
   ports:
-  - port: 443
-    targetPort: 443
+  - port: 30080
+    targetPort: 30080
     protocol: TCP
     nodePort: 30080

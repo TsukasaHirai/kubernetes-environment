@@ -6,6 +6,4 @@ namespace: reverse-proxy
 resources:
 - DB/
 - APL/
-# FIXME うまくingress→nginx→aplができない
 - Nginx/
-- Ingress/reverse-proxy-ingress.yaml

@@ -11,8 +11,10 @@ spec:
     metadata:
       labels:
         app: spanner-emulator
+        gcp-auth-skip-secret: "true"
     spec:
       containers:
+      # 1. Spanner Emulator 本体
       - name: spanner-emulator
         image: gcr.io/cloud-spanner-emulator/emulator
         resources:
@@ -25,3 +27,25 @@ spec:
         ports:
         - containerPort: 9010
         - containerPort: 9020
+      - name: spanner-init
+        image: gcr.io/google.com/cloudsdktool/google-cloud-cli:slim
+        env:
+        - name: SPANNER_EMULATOR_HOST
+          value: localhost:9010
+        - name: CLOUDSDK_CORE_PROJECT
+          value: test-project
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            echo "Sleeping 10 seconds to wait for Emulator..."
+            sleep 10
+            
+            echo "Initializing Spanner..."
+            gcloud config set auth/disable_credentials true
+            gcloud config set project test-project
+            gcloud config set api_endpoint_overrides/spanner http://localhost:9020/
+            gcloud spanner instances create test-instance --config=emulator-config --description="Test Instance" --nodes=1 || true
+            gcloud spanner databases create example-db --instance=test-instance || true
+            
+            echo "Done. Sleeping infinity..."
+            sleep infinity
