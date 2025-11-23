@@ -13,6 +13,6 @@ images:
   newTag: latest
 
 resources:
-- secret/reverse-proxy-certificate.yaml
+- secret/sealed-reverse-proxy-certificate.yaml
 - nginx-deployment.yaml
 - nginx-service.yaml

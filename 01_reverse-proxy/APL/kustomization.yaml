@@ -15,4 +15,4 @@ images:
 resources:
 - apl-deployment.yaml
 - apl-service.yaml
-- secret/ghcr-secret.yaml
+- secret/sealed-ghcr-secret.yaml
