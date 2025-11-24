@@ -33,8 +33,7 @@ spec:
             gcloud spanner instances create test-instance --config=emulator-config --description="Test Instance" --nodes=1 || true
             gcloud spanner databases create example-db --instance=test-instance || true
             
-            echo "Done. Sleeping infinity..."
-            sleep infinity
+            echo "Spanner Emulator Done"
       containers:
       - name: reverse-proxy-apl
         image: ghcr.io/tsukasahirai/reverse-proxy-apl
